@@ -60,3 +60,5 @@ server.listen(port, function (error) {
 2. Web Pages
 
 [Link button](http://example.com/){: .btn }
+
+<button type="button" name="button" class="btn">Button element</button>

@@ -3,7 +3,7 @@
 
 ##### How to start web page on Node.js from command line
 
-1) create app.js file <br>
+1) create "app.js" file <br>
 2) include the following code in the app.js file 
 (example found from <a href="https://stackabuse.com/how-to-start-a-node-server-examples-with-the-most-popular-frameworks/">How to Start a Node Server: Examples with the Most Popular Frameworks</a>)
 

@@ -82,3 +82,5 @@ server.listen(port, function (error) {
 ----
 click me|
 ----
+
+<kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Space</kbd>

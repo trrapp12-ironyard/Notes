@@ -1,10 +1,3 @@
-<style>
-  .btn {
-    background-color: white;
-    color: black;
-    border: 2px solid #e7e7e7;
-	}
-</style>
 
 ## Coding Notes
 

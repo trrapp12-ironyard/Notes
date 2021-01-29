@@ -6,7 +6,7 @@
 2) include the following code in the app.js file 
 (example found from <a href="https://stackabuse.com/how-to-start-a-node-server-examples-with-the-most-popular-frameworks/">How to Start a Node Server: Examples with the Most Popular Frameworks</a>)
 
-```
+```javascript
 const http = require('http')
 //require pulls in libraries from node, in this case it pulls in the http file which we will use to make a post request
 //this next line will create an instance of the http server to handle HTTP requests
@@ -23,7 +23,7 @@ console.log("Node server running on port 3000");
 
 another example from <a href="https://www.youtube.com/watch?v=VShtPwEkDD0">youtube</a>
 
-```
+```javascript
 const http = require('http');
 const fs = require('fs');
 const port = 8080;

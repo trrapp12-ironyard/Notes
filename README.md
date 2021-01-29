@@ -64,23 +64,8 @@ server.listen(port, function (error) {
 1. Chrome Extensions
 - Encoder/Decoder
   - Current user experience based off of using [URL Decoder/Encoder]https://meyerweb.com/eric/tools/dencoder/ 
-    - user has to click in the current field, do CTRL+A, CTRL+C, click into webpage, CTRL+A, CTRL+V
+    - user has to click in the current field, do <kbd>CTRL</kbd>+ <kbd>A</kbd>, <kbd>CTRL</kbd>+<kbd>C</kbd>, click into webpage, <kbd>CTRL</kbd>+<kbd>A</kbd>, <kbd>CTRL</kbd>+<kbd>V</kbd>
 2. Web Pages
 
-[Link button](http://example.com/){: .btn }
-
-<button type="button" name="button" class="btn">Button element</button>
-
-[button url="http://www.google.com"]
-
-{% include button.html url="http://www.google.com" %}
-
-<button name="button" onclick="http://www.google.com">Click me</button>
-
-[Click me](http://www.google.com){: .btn}
-
-----
-click me|
-----
 
 <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Space</kbd>

@@ -55,14 +55,17 @@ server.listen(port, function (error) {
 ## Coding Project Ideas
 
 1. *Chrome Extension: Encoder/Decoder*
-  - Current user experience based off of using [URL Decoder/Encoder](https://meyerweb.com/eric/tools/dencoder/)
-    - user has to click in the current field, do <kbd>CTRL</kbd>+ <kbd>A</kbd>, <kbd>CTRL</kbd>+<kbd>C</kbd>, click into webpage, <kbd>CTRL</kbd>+<kbd>A</kbd>, <kbd>CTRL</kbd>+<kbd>V</kbd>, hit the encode url button, hit <kbd>CTRL</kbd>+ <kbd>A</kbd>, <kbd>CTRL</kbd>+<kbd>C</kbd>, then go back to the field they are working in and hit <kbd>CTRL</kbd>+ <kbd>A</kbd>, <kbd>CTRL</kbd>+<kbd>V</kbd>.  Way too many times hitting <kbd>CTRL</kbd> + <kbd>something</kbd>
+
+Current user experience based off of using [URL Decoder/Encoder](https://meyerweb.com/eric/tools/dencoder/)
+  - user has to click in the current field, do <kbd>CTRL</kbd>+ <kbd>A</kbd>, <kbd>CTRL</kbd>+<kbd>C</kbd>, click into webpage, <kbd>CTRL</kbd>+<kbd>A</kbd>, <kbd>CTRL</kbd>+<kbd>V</kbd>, hit the encode url button, hit <kbd>CTRL</kbd>+ <kbd>A</kbd>, <kbd>CTRL</kbd>+<kbd>C</kbd>, then go back to the field they are working in and hit <kbd>CTRL</kbd>+ <kbd>A</kbd>, <kbd>CTRL</kbd>+<kbd>V</kbd>.  Way too many times hitting <kbd>CTRL</kbd> + <kbd>something</kbd>
     
 2. *Chrome Extension: Underliner*
-  - create an extension that helps you to read across tabular data by drawing and displaying an underline across the entire screen
+
+create an extension that helps you to read across tabular data by drawing and displaying an underline across the entire screen
     
 3. *Tribute Web Page*
-- create web page for Diana's Grandpa that can serve up different cards with videos 
+
+create web page for Diana's Grandpa that can serve up different cards with videos 
   - cards would have a window to show the video, a link to click to view it, a description of the video, and would show up along an animated timeline
   - certain moderators with priveleges would be able to move the movies up and down, or it would be decided programmatically
   - have a place to raise issues with a form so people can give feedback.

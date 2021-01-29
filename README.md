@@ -56,7 +56,7 @@ server.listen(port, function (error) {
 
 1. Chrome Extensions
 - Encoder/Decoder
-  - Current user experience based off of using [URL Decoder/Encoder]https://meyerweb.com/eric/tools/dencoder/ 
+  - Current user experience based off of using [URL Decoder/Encoder](https://meyerweb.com/eric/tools/dencoder/)
     - user has to click in the current field, do <kbd>CTRL</kbd>+ <kbd>A</kbd>, <kbd>CTRL</kbd>+<kbd>C</kbd>, click into webpage, <kbd>CTRL</kbd>+<kbd>A</kbd>, <kbd>CTRL</kbd>+<kbd>V</kbd>, hit the encode url button, hit <kbd>CTRL</kbd>+ <kbd>A</kbd>, <kbd>CTRL</kbd>+<kbd>C</kbd>, then go back to the field they are working in and hit <kbd>CTRL</kbd>+ <kbd>A</kbd>, <kbd>CTRL</kbd>+<kbd>V</kbd>.  Way too many times hitting <kbd>CTRL</kbd> + <kbd>something</kbd>
 2. Web Pages
 

@@ -1,37 +1,52 @@
-## Welcome to GitHub Pages
+## Coding Notes
 
-You can use the [editor on GitHub](https://github.com/trrapp12/Notes/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+##### How to start web page on Node.js from command line
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+1) create app.js file
+2) include the following code in the app.js file 
+(example found from <a href="https://stackabuse.com/how-to-start-a-node-server-examples-with-the-most-popular-frameworks/">How to Start a Node Server: Examples with the Most Popular Frameworks</a>)
 
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+```
+const http = require('http')
+//require pulls in libraries from node, in this case it pulls in the http file which we will use to make a post request
+//this next line will create an instance of the http server to handle HTTP requests
+let app = http.createServer((req, res) function {
+//set a response type of plain text for the reponse
+	res.writeHead(200, {'Content-Type' : 'text/plain'});
+	// Send back a response and end the connection
+	res.end('Hellow World'); 
+});
+//STart the server on port 3000
+app.listen(3000, '127.0.0.1');
+console.log("Node server running on port 3000");
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+another example from <a href="https://www.youtube.com/watch?v=VShtPwEkDD0">youtube</a>
 
-### Jekyll Themes
+```
+const http = require('http');
+const fs = require('fs');
+const port = 8080;
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/trrapp12/Notes/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+const server = http.createServer(function (req, res) {
+  res.writeHead(200, { 'Content-Type' : 'text/html'})
+  fs.readFile('index.html', function (error, data) {
+    if (error) {
+      res.writeHead(404)
+      res.write('Error: File Not Found')
+    } else {
+      res.write(data)
+    }
+    res.end()
+  })
+})
 
-### Support or Contact
+server.listen(port, function (error) {
+  if (error) {
+   console.log('there was an error: ' + error)
+ } else {
+   console.log("server is listneing on port: " + port)
+ }
+})
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+```

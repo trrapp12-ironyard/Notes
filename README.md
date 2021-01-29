@@ -62,3 +62,11 @@ server.listen(port, function (error) {
 [Link button](http://example.com/){: .btn }
 
 <button type="button" name="button" class="btn">Button element</button>
+
+[button url="http://www.google.com"]
+
+{% include button.html url="http://www.google.com" %}
+
+<button name="button" onclick="http://www.google.com">Click me</button>
+
+[Click me](http://www.google.com){: .btn}

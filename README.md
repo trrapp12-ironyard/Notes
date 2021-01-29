@@ -52,6 +52,8 @@ server.listen(port, function (error) {
 
 ```
 
+----
+
 ## Coding Project Ideas
 
 1. Chrome Extension: Encoder/Decoder

@@ -79,54 +79,123 @@ server.listen(port, function (error) {
 ```
 
 
-## Git Commits: 
+## Git Commands: 
+
+
 
 <details>
-	<summary>title</summary>
+	<summary>git config</summary>
 	explanation: 
 	
 </details>
 
-git commands: 
+<details>
+	<summary>git init</summary>
+	explanation: 
+	
+</details>
 
-git config
+<details>
+	<summary>git clone</summary>
+	explanation: 
+	
+</details>
 
-git init
+<details>
+	<summary>git add</summary>
+	explanation: 
+	
+</details>
 
-git clone
+<details>
+	<summary>git commit</summary>
+	explanation: 
+	
+</details>
 
-git add
+<details>
+	<summary>git diff</summary>
+	explanation: 
+	
+</details>
 
-git commit
+<details>
+	<summary>git reset</summary>
+	explanation: 
+	
+</details>
 
-git diff
+<details>
+	<summary>git status</summary>
+	explanation: 
+	
+</details>
 
-git reset
+<details>
+	<summary>git rm</summary>
+	explanation: 
+	
+</details>
 
-git status
+<details>
+	<summary>git log</summary>
+	explanation: 
+	
+</details>
 
-git rm
+<details>
+	<summary>git show</summary>
+	explanation: 
+	
+</details>
 
-git log
+<details>
+	<summary>git tag</summary>
+	explanation: 
+	
+</details>
 
-git show
+<details>
+	<summary>git branch</summary>
+	explanation: 
+	
+</details>
 
-git tag
+<details>
+	<summary>git checkout</summary>
+	explanation: 
+	
+</details>
 
-git branch
+<details>
+	<summary>git merge</summary>
+	explanation: 
+	
+</details>
 
-git checkout
+<details>
+	<summary>git remote</summary>
+	explanation: 
+	
+</details>
 
-git merge
+<details>
+	<summary>git push</summary>
+	explanation: 
+	
+</details>
 
-git remote
+<details>
+	<summary>git pull</summary>
+	explanation: 
+	
+</details>
 
-git push
-
-git pull
-
-git stash
-
+<details>
+	<summary>git stash</summary>
+	explanation: 
+	
+</details>
 ----
 
 ## Coding Project Ideas

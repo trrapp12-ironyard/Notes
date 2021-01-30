@@ -51,6 +51,75 @@ server.listen(port, function (error) {
 })
 
 ```
+----
+
+## An Accordion in Markdown: 
+
+<details>
+  <summary>Click to expand!</summary>
+  
+  ## Heading
+  1. A numbered
+  2. list
+     * With some
+     * Sub bullets
+</details>
+
+```md
+# A collapsible section with markdown
+<details>
+  <summary>Click to expand!</summary>
+  
+  ## Heading
+  1. A numbered
+  2. list
+     * With some
+     * Sub bullets
+</details>
+```
+
+
+## Git Commits: 
+
+git commands: 
+
+git config
+
+git init
+
+git clone
+
+git add
+
+git commit
+
+git diff
+
+git reset
+
+git status
+
+git rm
+
+git log
+
+git show
+
+git tag
+
+git branch
+
+git checkout
+
+git merge
+
+git remote
+
+git push
+
+git pull
+
+git stash
 
 ----
 

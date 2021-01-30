@@ -88,63 +88,25 @@ A list of applicable git commands with explanations of common uses for them.
 	
 	Usage: 
 	
+	Example: 
+	
 ```shell
 git config --global user.email "your_email@example.com"
 ```
-	
-```sh
-git config --global user.email "your_email@example.com"
-```
-	
-```bash
-git config --global user.email "your_email@example.com"
-```
-	
-```zsh
-git config --global user.email "your_email@example.com"
-```
-	
-```console
-git config --global user.email "your_email@example.com"
-```
-	
-```shell-session
-git config --global user.email "your_email@example.com"
-```
-	
-```powershell
-git config --global user.email "your_email@example.com"
-```
-	
-```ps
-git config --global user.email "your_email@example.com"
-```
-	
-```dos
-git config --global user.email "your_email@example.com"
-```
-	
-```bat
-git config --global user.email "your_email@example.com"
-```
-	
-```cmd
-git config --global user.email "your_email@example.com"
-```
-	
-```Shell
-git config --global user.email "your_email@example.com"
-```
-	
-```dos
-git config --global user.email "your_email@example.com"
-```
+
 	
 </details>
 
 <details>
 	<summary>git init</summary>
-	explanation: 
+	
+	Usage: 
+	
+	Example: 
+	
+```shell
+git config --global user.email "your_email@example.com"
+```
 	
 </details>
 

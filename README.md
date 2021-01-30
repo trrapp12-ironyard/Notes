@@ -81,11 +81,16 @@ server.listen(port, function (error) {
 
 ## Git Commands: 
 
-
+A list of applicable git commands with explanations of common uses for them.
 
 <details>
 	<summary>git config</summary>
-	explanation: 
+	
+	Usage: 
+	
+	```bash
+	git config --global user.email "your_email@example.com"
+	```
 	
 </details>
 

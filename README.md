@@ -86,15 +86,37 @@ A list of applicable git commands with explanations of common uses for them.
 <details>
 	<summary>git config</summary>
 	
-Usage: 
+Usage: git config is used primarily to set up configuration settings having to do with the git repository.  For example, setting up the email associated with the repository.
+
+git config can take different arguments.  Each represents a different configuration level.  
+* ` --local` By default, git config will write to a local level if no configuration option is passed. Local level configuration is applied to the context repository git config gets invoked in. Local configuration values are stored in a file that can be found in the repo's .git directory: .git/config
+* ` --global` Global level configuration is user-specific, meaning it is applied to an operating system user. Global configuration values are stored in a file that is located in a user's home directory. ~ /.gitconfig on unix systems and C:\Users\\.gitconfig on windows.
+* ` --system` System-level configuration is applied across an entire machine. This covers all users on an operating system and all repos. The system level configuration file lives in a gitconfig file off the system root path. $(prefix)/etc/gitconfig on unix systems. On windows this file can be found at C:\Documents and Settings\All Users\Application Data\Git\config on Windows XP, and in C:\ProgramData\Git\config on Windows Vista and newer.
+
+Thus the order of priority for configuration levels is: local, global, system. This means when looking for a configuration value, Git will start at the local level and bubble up to the system level.
+
+
 	
 Example: 
-	
+
+setting up an email: 
 ```shell
 git config --global user.email "your_email@example.com"
 ```
+setting up a default IDE (integrated development environment: software for building applications that combines common developer tools into a single graphical user interface (GUI)). 
+```shell
+~ git config --global core.editor "atom --wait"~
+```
 
-	
+```shell
+~ git config --global core.editor "subl -n -w"~
+```
+
+```shell
+~ git config --global core.editor "'c:/program files/sublime text 3/sublimetext.exe' -w"~
+```
+
+Information taken from [Atlassian BitBucket](https://www.atlassian.com/git/tutorials/setting-up-a-repository/git-config#:~:text=The%20git%20config%20command%20is,modify%20a%20configuration%20text%20file.)
 </details>
 
 <details>
@@ -348,6 +370,8 @@ git config --global user.email "your_email@example.com"
 
 	
 </details>
+
+
 ----
 
 ## Coding Project Ideas

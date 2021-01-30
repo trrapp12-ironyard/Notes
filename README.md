@@ -182,6 +182,10 @@ The most common use case for  git init --bare is to create a remote central repo
 ssh <user>@<host> cd path/above/repo git init --bare my-project.git
 ```
 First, you SSH into the server that will contain your central repository. Then, you navigate to wherever you’d like to store the project. Finally, you use the --bare flag to create a central storage repository. Developers would then clone my-project.git to create a local copy on their development machine.
+
+**information taken from** [Atlassian BitBucket: git init](https://www.atlassian.com/git/tutorials/setting-up-a-repository/git-init)
+
+
 </details>
 
 <details>

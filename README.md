@@ -89,7 +89,9 @@ A list of applicable git commands with explanations of common uses for them.
 	Usage: 
 	
 	```console
+	
 	git config --global user.email "your_email@example.com"
+	
 	```
 	
 </details>

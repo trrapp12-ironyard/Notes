@@ -116,7 +116,7 @@ setting up a default IDE (integrated development environment: software for build
 ~ git config --global core.editor "'c:/program files/sublime text 3/sublimetext.exe' -w"~
 ```
 
-**Information taken from**  [Atlassian BitBucket](https://www.atlassian.com/git/tutorials/setting-up-a-repository/git-config#:~:text=The%20git%20config%20command%20is,modify%20a%20configuration%20text%20file.)
+*Information taken from*  [Atlassian BitBucket](https://www.atlassian.com/git/tutorials/setting-up-a-repository/git-config#:~:text=The%20git%20config%20command%20is,modify%20a%20configuration%20text%20file.)
 </details>
 
 <details>

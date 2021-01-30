@@ -100,115 +100,252 @@ git config --global user.email "your_email@example.com"
 <details>
 	<summary>git init</summary>
 	
-	Usage: 
+Usage: 
 	
-	Example: 
+Example: 
 	
 ```shell
 git config --global user.email "your_email@example.com"
 ```
+
 	
 </details>
 
 <details>
 	<summary>git clone</summary>
-	explanation: 
+	
+Usage: 
+	
+Example: 
+	
+```shell
+git config --global user.email "your_email@example.com"
+```
+
 	
 </details>
 
 <details>
 	<summary>git add</summary>
-	explanation: 
+	
+Usage: 
+	
+Example: 
+	
+```shell
+git config --global user.email "your_email@example.com"
+```
+
 	
 </details>
 
 <details>
 	<summary>git commit</summary>
-	explanation: 
+	
+Usage: 
+	
+Example: 
+	
+```shell
+git config --global user.email "your_email@example.com"
+```
+
 	
 </details>
 
 <details>
 	<summary>git diff</summary>
-	explanation: 
+	
+Usage: 
+	
+Example: 
+	
+```shell
+git config --global user.email "your_email@example.com"
+```
+
 	
 </details>
 
 <details>
 	<summary>git reset</summary>
-	explanation: 
+	
+Usage: 
+	
+Example: 
+	
+```shell
+git config --global user.email "your_email@example.com"
+```
+
 	
 </details>
 
 <details>
 	<summary>git status</summary>
-	explanation: 
+	
+Usage: 
+	
+Example: 
+	
+```shell
+git config --global user.email "your_email@example.com"
+```
+
 	
 </details>
 
 <details>
 	<summary>git rm</summary>
-	explanation: 
+	
+Usage: 
+	
+Example: 
+	
+```shell
+git config --global user.email "your_email@example.com"
+```
+
 	
 </details>
 
 <details>
 	<summary>git log</summary>
-	explanation: 
+	
+Usage: 
+	
+Example: 
+	
+```shell
+git config --global user.email "your_email@example.com"
+```
+
 	
 </details>
 
 <details>
 	<summary>git show</summary>
-	explanation: 
+	
+Usage: 
+	
+Example: 
+	
+```shell
+git config --global user.email "your_email@example.com"
+```
+
 	
 </details>
 
 <details>
 	<summary>git tag</summary>
-	explanation: 
+	
+Usage: 
+	
+Example: 
+	
+```shell
+git config --global user.email "your_email@example.com"
+```
+
 	
 </details>
 
 <details>
 	<summary>git branch</summary>
-	explanation: 
+	
+Usage: 
+	
+Example: 
+	
+```shell
+git config --global user.email "your_email@example.com"
+```
+
 	
 </details>
 
 <details>
 	<summary>git checkout</summary>
-	explanation: 
+	
+Usage: 
+	
+Example: 
+	
+```shell
+git config --global user.email "your_email@example.com"
+```
+
 	
 </details>
 
 <details>
 	<summary>git merge</summary>
-	explanation: 
+	
+Usage: 
+	
+Example: 
+	
+```shell
+git config --global user.email "your_email@example.com"
+```
+
 	
 </details>
 
 <details>
 	<summary>git remote</summary>
-	explanation: 
+	
+Usage: 
+	
+Example: 
+	
+```shell
+git config --global user.email "your_email@example.com"
+```
+
 	
 </details>
 
 <details>
 	<summary>git push</summary>
-	explanation: 
+	
+Usage: 
+	
+Example: 
+	
+```shell
+git config --global user.email "your_email@example.com"
+```
+
 	
 </details>
 
 <details>
 	<summary>git pull</summary>
-	explanation: 
+	
+Usage: 
+	
+Example: 
+	
+```shell
+git config --global user.email "your_email@example.com"
+```
+
 	
 </details>
 
 <details>
 	<summary>git stash</summary>
-	explanation: 
+	
+Usage: 
+	
+Example: 
+	
+```shell
+git config --global user.email "your_email@example.com"
+```
+
 	
 </details>
 ----

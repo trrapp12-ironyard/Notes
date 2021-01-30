@@ -122,15 +122,66 @@ setting up a default IDE (integrated development environment: software for build
 <details>
 	<summary>git init</summary>
 	
-Usage: 
-	
-Example: 
-	
-```shell
-git config --global user.email "your_email@example.com"
-```
+Usage: `git init` initializes a new Git repository.  The intialization process essentially means that it will write a .git file in the directory that you are in.  One of the gotchas with this is to make sure that you have navigated to the correct directory first.  For example, if I were to create a file on my home computer that separated my professional work from my personal work.  I intend to put my personal work in it, so I will name it "Personal Portfolio."  Inside the "Personal Profile" directory, I eventually will have multiple projects.  One of those projects is going to be named "First Personal Project." So now the question.  Which directory level should I do my `git init` in?  
 
+Answer: I will need to make a new folder to hold my individual project in, then initialize the git file in there.  Otherwise, if the ".git" file was initialized in the parent directory (Personal Portfolio), any time I made a commit to any of my projects, it would track it and send them up, creating an extremely bloated GitHub repository. 
 	
+Example(s):
+
+setting up brand new directory from the command line and initializing the git repository in it.
+1. navigate to the root directory (usually the user account, which will show you your desktop, also "~" stands for the root directory)
+```shell
+cd ~
+```
+2. navigate into to the desktop (cd stands for change directory)
+```shell
+cd Desktop
+```
+3. navigate to the directory (folder) you want to put the project in 
+```shell
+cd Desktop
+```
+4. make the parent directory for all the projects (mkdir stands for "make directory")
+```shell
+mkdir "Personal Portfolio Projects"
+```
+5. navigate into the directory you just made, so you can make another directory (folder) to hold the individual project (if you created a new directory with spaces in it, you will need to refer to your directory using quote thereafter.  If there is no space, no quotes are needed.)
+```shell
+cd "Personal Portfolio Projects"
+```
+6. now we can actually initialize a .git file.  Before we do this, we will need to step away from the command line and do one additional step.  Get off the command line and go to a browser.  Navigate to github.com.  Sign into your account.  Click on the "repositories" tab.  Click on the "new" button.  Type in the name of the repository. MAKE SURE THE NAME IN THIS REPOSITORY MATCHES THE NAME YOU NAME IT ON THE COMMAND LINE.  GitHub will take you to a screen that says, "Quick setup — if you’ve done this kind of thing before."  There will be three options to initialize a new repository along with buttons to copy the code.  Either click the buttons or copy the code manually with a <kbd>CTRL</kbd> + <kbd>C</kbd>.  Paste the code in the command line with a <kbd>CTRL</kbd> + <kbd>V</kbd>.  It should look something like this. 
+```shell
+echo "# delete-me" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/trrapp12/First-Personal-Project.git
+git push -u origin main
+```
+7. you now have the repository initialized in TWO places (the local on your computer and the master in the cloud).  This is how it should be.  You can proceed by making whatever files you need in the directory and continuing with `git-push` and `git-pull` as needed.
+
+
+Other important notes for more advanced development: 
+
+##### git init vs. git clone
+A quick note: git init and git clone can be easily confused. At a high level, they can both be used to "initialize a new git repository." However, git clone is dependent on git init. git clone is used to create a copy of an existing repository. Internally, git clone first calls git init to create a new repository. It then copies the data from the existing repository, and checks out a new set of working files. Learn more on the git clone page.
+
+##### Bare repositories --- git init --bare
+```shell
+git init --bare <directory>
+```
+Initialize an empty Git repository, but omit the working directory. Shared repositories should always be created with the --bare flag (see discussion below). Conventionally, repositories initialized with the --bare flag end in .git. For example, the bare version of a repository called my-project should be stored in a directory called my-project.git.
+
+The --bare flag creates a repository that doesn’t have a working directory, making it impossible to edit files and commit changes in that repository. You would create a bare repository to git push and git pull from, but never directly commit to it. Central repositories should always be created as bare repositories because pushing branches to a non-bare repository has the potential to overwrite changes. Think of --bare as a way to mark a repository as a storage facility, as opposed to a development environment. This means that for virtually all Git workflows, the central repository is bare, and developers local repositories are non-bare.
+
+##### Git Tutorial: Bare Repositories
+The most common use case for  git init --bare is to create a remote central repository:
+
+```shell
+ssh <user>@<host> cd path/above/repo git init --bare my-project.git
+```
+First, you SSH into the server that will contain your central repository. Then, you navigate to wherever you’d like to store the project. Finally, you use the --bare flag to create a central storage repository. Developers would then clone my-project.git to create a local copy on their development machine.
 </details>
 
 <details>

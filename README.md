@@ -940,15 +940,14 @@ This command lists version history for a file, including the renaming of files a
 <details>
 	<summary>git show</summary>
 	
-Usage: 
+Usage: This command shows the metadata and content changes of the specified commit.
 	
 Example: 
-	
-```shell
-git config --global user.email "your_email@example.com"
-```
 
-	
+```shell
+git show [commit]
+```
+*information taken from* [Top 20 Git Commands with Examples](https://dzone.com/articles/top-20-git-commands-with-examples)
 </details>
 
 <details>

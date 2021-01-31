@@ -70,14 +70,14 @@ server.listen(port, function (error) {
 	<summary>Working Example with Code Example</summary>
 	
 	<details>
-  <summary>Click to expand!</summary>
+		<summary>Click to expand!</summary>
   
-  ## Heading
-  1. A numbered
-  2. list
-     * With some
-     * Sub bullets
-</details>
+  		## Heading
+  		1. A numbered
+  		2. list
+     		* With some
+     		* Sub bullets
+	</details>
 
 ```md
 # A collapsible section with markdown
@@ -91,13 +91,12 @@ server.listen(port, function (error) {
      * Sub bullets
 
 ```
+
 </details>
+
 ----
 
 <br>
-
-<details>
-
 
 # Git Commands: 
 <details> 

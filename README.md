@@ -67,6 +67,9 @@ server.listen(port, function (error) {
 # An Accordion in Markdown: 
 
 <details>
+	<summary>Working Example with Code Example</summary>
+	
+	<details>
   <summary>Click to expand!</summary>
   
   ## Heading
@@ -91,6 +94,9 @@ server.listen(port, function (error) {
 ----
 
 <br>
+
+<details>
+
 
 # Git Commands: 
 <details> 

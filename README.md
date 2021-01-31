@@ -605,12 +605,14 @@ git config --global user.email "your_email@example.com"
 <details>
 	<summary>git tag</summary>
 	
-Usage: 
+Usage:  
+
+This command is used to give tags to the specified commit.
 	
 Example: 
 	
 ```shell
-git config --global user.email "your_email@example.com"
+git tag [commitID] 
 ```
 
 	

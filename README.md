@@ -93,9 +93,9 @@ server.listen(port, function (error) {
 <br>
 
 # Git Commands: 
-
-A list of applicable git commands with explanations of common uses for them.
-
+<details> 
+	<summary>A list of applicable git commands with explanations of common uses for them.</summary>
+	
 <details>
 	<summary>git config</summary>
 	
@@ -1077,6 +1077,10 @@ git config --global user.email "your_email@example.com"
 
 	
 </details>
+
+
+</details>
+
 
 
 ----

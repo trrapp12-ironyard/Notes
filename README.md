@@ -1,6 +1,6 @@
 # Coding Notes Table of Contents
 
-<br>[App.js](#app.js)|[An Accordion in Markdown](#an-accordion-in-markdown)|[Git Commands](#git-commands)|[Coding Project Ideas](#coding-project-ideas)|[Future Section 1](#future-section-1)|[Future Section 2](#future-section-2)|
+[App.js](#app.js)|[An Accordion in Markdown](#an-accordion-in-markdown)|[Git Commands](#git-commands)|[Coding Project Ideas](#coding-project-ideas)|[Future Section 1](#future-section-1)|[Future Section 2](#future-section-2)|
 |:---:|:---:|:---:|:---:|:---:|:---:|
 |[Future Section 3](#future-section-3)|[Future Section 4](#future-section-4)|[Future Section 5](#future-section-5)|[Future Section 6](#future-section-6)|[Future Section 7](#future-section-7)|[Future Section 8](#future-section-8)|
 

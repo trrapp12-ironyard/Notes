@@ -69,15 +69,15 @@ server.listen(port, function (error) {
 <details>
 	<summary>Working Example with Code Example</summary>
 	
-	<details>
-		<summary>Click to expand!</summary>
+<details>
+	<summary>Click to expand!</summary>
   
-  		## Heading
-  		1. A numbered
-  		2. list
-     		* With some
-     		* Sub bullets
-	</details>
+  ## Heading
+  1. A numbered
+  2. list
+  * With some
+  * Sub bullets
+</details>
 
 ```md
 # A collapsible section with markdown

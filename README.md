@@ -478,9 +478,9 @@ Ignored files are usually build artifacts and machine generated files that can b
 * hidden system files, such as .DS_Store or Thumbs.db
 * personal IDE config files, such as .idea/workspace.xml
 
-Ignored files are tracked in a special file named .gitignore that is checked in at the root of your repository. There is no explicit git ignore command: instead the .gitignore file must be edited and committed by hand when you have new files that you wish to ignore. `.gitignore` files contain patterns that are matched against file names in your repository to determine whether or not they should be ignored.
+Ignored files are tracked in a special file named `.gitignore` that is checked in at the root of your repository. There is no explicit git ignore command: instead the `.gitignore` file must be edited and committed by hand when you have new files that you wish to ignore. `.gitignore` files contain patterns that are matched against file names in your repository to determine whether or not they should be ignored.
 
-.gitignore uses globbing patterns to match against file names. You can construct your patterns using various symbols:
+`.gitignore` uses globbing patterns to match against file names. You can construct your patterns using various symbols:
 
 |Pattern|Example matches|Explanation*|
 |:---:|:---:|:---:|
@@ -504,7 +504,7 @@ important/debug.log| Patterns defined after a negating pattern will re-ignore an
 | logs/&ast;day/debug.log | logs/monday/debug.log <br> logs/tuesday/debug.log <br> *but not* logs/latest/debug.log | Wildcards can be used in directory names as well.|
 | logs/debug.log| logs/debug.log <br> *but not* debug.log <br> build/logs/debug.log |Patterns specifying a file in a particular directory are relative to the repository root. (You can prepend a slash if you like, but it doesn't do anything special.)|
 
-&ast;&ast; these explanations assume your `.gitignore file` is in the top level directory of your repository, as is the convention. If your repository has multiple .gitignore files, simply mentally replace "repository root" with "directory containing the .gitignore file" (and consider unifying them, for the sanity of your team).&ast;
+&ast;&ast; these explanations assume your `.gitignore file` is in the top level directory of your repository, as is the convention. If your repository has multiple `.gitignore` files, simply mentally replace "repository root" with "directory containing the `.gitignore` file" (and consider unifying them, for the sanity of your team).&ast;
 
 In addition to these characters, you can use # to include comments in your `.gitignore` file:
 

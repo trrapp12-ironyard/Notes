@@ -5,7 +5,9 @@
 |[Future Section 3](#future-section-3)|[Future Section 4](#future-section-4)|[Future Section 5](#future-section-5)|[Future Section 6](#future-section-6)|[Future Section 7](#future-section-7)|[Future Section 8](#future-section-8)|
 
 ----
+
 <br>
+
 # App.js
 
 ##### How to start web page on Node.js from command line
@@ -59,7 +61,9 @@ server.listen(port, function (error) {
 
 ```
 ----
+
 <br>
+
 # An Accordion in Markdown: 
 
 <details>
@@ -85,7 +89,9 @@ server.listen(port, function (error) {
 </details>
 ```
 ----
+
 <br>
+
 # Git Commands: 
 
 A list of applicable git commands with explanations of common uses for them.
@@ -599,7 +605,9 @@ git config --global user.email "your_email@example.com"
 
 
 ----
+
 <br>
+
 # Coding Project Ideas
 
 1. Chrome Extension: Encoder/Decoder
@@ -620,29 +628,49 @@ git config --global user.email "your_email@example.com"
 	  - have a place to raise issues with a form so people can give feedback.
 
 ----
+
 <br>
+
 # Future Section 1
 
 ----
+
 <br>
+
 # Future Section 2
 
 ----
+
 <br>
+
 # Future Section 3
 
 ----
+
 <br>
+
 # Future Section 4
+
 ----
+
 <br>
+
 # Future Section 5
+
 ----
+
 <br>
+
 # Future Section 6
+
 ----
+
 <br>
+
 # Future Section 7
+
 ----
+
 <br>
+
 # Future Section 8

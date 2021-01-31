@@ -1,8 +1,8 @@
 # Table of Contents
 
-|[Coding Notes](#coding-notes)|[An Accordion in Markdown](#an-accordion-in-markdown)|[Git Commands](#git-commands)|[Coding Project Ideas](#coding-project-ideas)|
+|[Coding Notes](#coding-notes)|[An Accordion in Markdown](#an-accordion-in-markdown)|[Git Commands](#git-commands)|[Coding Project Ideas](#coding-project-ideas)|[Future Section 1](#future-section-1)
 |:---:|:---:|:---:|:---:|
-|[Future Section 1](#future-section-1)|[Future Section 2](#future-section-2)|[Future Section 3](#future-section-3)|[Future Section 4](#future-section-4)|
+|[Future Section 2](#future-section-2)|[Future Section 3](#future-section-3)|[Future Section 4](#future-section-4)|[Future Section 5](#future-section-5)|
 
 # Coding Notes
 
@@ -629,3 +629,5 @@ git config --global user.email "your_email@example.com"
 
 ----
 # Future Section 4
+----
+# Future Section 5

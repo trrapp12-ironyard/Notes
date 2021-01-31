@@ -1,5 +1,10 @@
+# Table of Contents
 
-## Coding Notes
+|[Coding Notes](#coding-notes)|[An Accordion in Markdown](#an-accordion-in-markdown)|[Git Commands](#git-commands)|[Coding Project Ideas](#coding-project-ideas)|
+----
+|[Future Section 1](#future-section-1)|[Future Section 2](#future-section-2)|[Future Section 3](#future-section-3)|[Future Section 4](#future-section-4)|
+
+# Coding Notes
 
 ##### How to start web page on Node.js from command line
 
@@ -53,7 +58,7 @@ server.listen(port, function (error) {
 ```
 ----
 
-## An Accordion in Markdown: 
+# An Accordion in Markdown: 
 
 <details>
   <summary>Click to expand!</summary>
@@ -79,7 +84,7 @@ server.listen(port, function (error) {
 ```
 
 
-## Git Commands: 
+# Git Commands: 
 
 A list of applicable git commands with explanations of common uses for them.
 
@@ -593,7 +598,7 @@ git config --global user.email "your_email@example.com"
 
 ----
 
-## Coding Project Ideas
+# Coding Project Ideas
 
 1. Chrome Extension: Encoder/Decoder
 	<br>
@@ -612,5 +617,15 @@ git config --global user.email "your_email@example.com"
 	  - certain moderators with priveleges would be able to move the movies up and down, or it would be decided programmatically
 	  - have a place to raise issues with a form so people can give feedback.
 
+----
+# Future Section 1
 
+----
 
+# Future Section 2
+
+----
+# Future Section 3
+
+----
+# Future Section 4

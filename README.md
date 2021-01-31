@@ -350,15 +350,62 @@ The commit model of SVN and Git are significantly different but often confused, 
 <details>
 	<summary>git diff</summary>
 	
-Usage: 
-	
-Example: 
-	
-```shell
-git config --global user.email "your_email@example.com"
-```
+Usage: Comparing changes between two repositories (usually comparing what you have on your local to see if there are changes with it and what is on the master.)
 
-	
+Diffing is a function that takes two input data sets and outputs the changes between them. `git diff` is a multi-use Git command that when executed runs a diff function on Git data sources. These data sources can be commits, branches, files and more. This document will discuss common invocations of `git diff` and diffing work flow patterns. The `git diff` command is often used along with `git status` and `git log` to analyze the current state of a Git repo.
+
+Here are some things to know.  
+
+`git status` will list all the files that haven't yet been committed.  This shows us the difference between what files are being tracked and what aren't.  It answers the "which" quetion.
+
+`git diff` answers the "what" question.  Now that we know which files are different, "what" are the actual changes that were made.  
+
+`git diff` will show the file differences which are not yet staged.  `git diff –staged` will show the differences between the files in the staging area and the latest version present. `git diff [first branch] [second branch]` shows the differences between the two branches. You can use this 
+
+`git log` shows us differences, but in a historical context.  What was the history of changes over time.  This command is used to list the version history for the current branch.
+
+Example output of a `git diff` command. 
+```shell
+diff --git a/diff_test.txt b/diff_test.txt
+index 6b0c6cf..b37e70a 100644
+--- a/diff_test.txt +++ b/diff_test.txt
+@@ -1 +1 @@ -this is a git diff test example +this is a diff example
+```
+Breakdown of what the output means: 
+1. Comparison input
+ 
+```shell
+diff --git a/diff_test.txt b/diff_test.txt
+```
+This line displays the input sources of the diff. We can see that `a/diff_test.txt` and `b/diff_test.txt` have been passed to the diff.
+
+2. Meta data
+ 
+```shell
+index 6b0c6cf..b37e70a 100644
+```
+This line displays some internal Git metadata. You will most likely not need this information. The numbers in this output correspond to Git object version hash identifiers.
+
+3. Markers for changes
+ 
+```shell
+--- a/diff_test.txt +++ b/diff_test.txt
+```
+These lines are a legend that assigns symbols to each diff input source. In this case, changes from `a/diff_test.txt` are marked with a `---` and the changes from `b/diff_test.txt` are marked with the `+++` symbol.
+
+4. Diff chunks
+The remaining diff output is a list of diff 'chunks'. A diff only displays the sections of the file that have changes. In our current example, we only have one chunk as we are working with a simple scenario. Chunks have their own granular output semantics.
+
+ 
+```shell
+@@ -1 +1 @@ -this is a git diff test example +this is a diff example
+```
+The first line is the chunk header. Each chunk is prepended by a header inclosed within `@@` symbols. The content of the header is a summary of changes made to the file. In our simplified example, we have -1 +1 meaning line one had changes. In a more realistic diff, you would see a header like:
+
+```shell 
+@@ -34,6 +34,8 @@
+```
+In this header example, 6 lines have been extracted starting from line number 34. Additionally, 8 lines have been added starting at line number 34.
 </details>
 
 <details>

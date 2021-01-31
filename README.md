@@ -577,14 +577,19 @@ You can pass multiple file names to git check-ignore if you like, and the names 
 <details>
 	<summary>git log</summary>
 	
-Usage: 
-	
+Usage: This command is used to list the version history for the current branch.
+
 Example: 
 	
 ```shell
-git config --global user.email "your_email@example.com"
+git log
 ```
+This command is used to list the version history for the current branch.
 
+```shell
+git log –follow[file]  
+```
+This command lists version history for a file, including the renaming of files also.
 	
 </details>
 
@@ -622,6 +627,8 @@ git tag [commitID]
 	<summary>git branch</summary>
 	
 Usage: lists all the branches in the current repository
+
+Example:
 
 ```shell
 git branch

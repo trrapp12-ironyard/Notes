@@ -621,15 +621,27 @@ git tag [commitID]
 <details>
 	<summary>git branch</summary>
 	
-Usage: 
-	
-Example: 
-	
+Usage: lists all the branches in the current repository
+
 ```shell
-git config --global user.email "your_email@example.com"
+git branch
 ```
 
-	
+This command lists all the local branches in the current repository.
+
+```shell
+git branch [branch name]
+```
+
+This command creates a new branch.
+
+```shell
+git branch -d [branch name]
+```
+
+This command deletes the feature branch.
+
+*information obtained from* [Top 20 Git Commands With Examples](https://dzone.com/articles/top-20-git-commands-with-examples)
 </details>
 
 <details>

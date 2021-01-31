@@ -89,8 +89,9 @@ server.listen(port, function (error) {
   2. list
      * With some
      * Sub bullets
-</details>
+
 ```
+</details>
 ----
 
 <br>

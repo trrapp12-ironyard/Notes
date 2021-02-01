@@ -1068,14 +1068,23 @@ Usage: Git stash
 `git stash` temporarily shelves (or stashes) changes you've made to your working copy so you can work on something else, and then come back and re-apply them later on. Stashing is handy if you need to quickly switch context and work on something else, but you're mid-way through a code change and aren't quite ready to commit.
 
 [Git Stash](#git-stash)
+
 [Stashing your work](#stashing-your-work)
+
 [Re-applying your stashed changes](#re-applying-your-stashed-changes)
+
 [Stashing untracked or ignored files](#stashing-untracked-or-ignored-files)
+
 [Managing multiple stashes](#managing-multiple-stashes)
+
 [Viewing stash diffs](#viewing-stash-diffs)
+
 [Partial stashes](#partial-stashes)
+
 [Creating a branch from your stash](creating-a-branch-from-your-stash)
+
 [Cleaning up your stash](#cleaning-up-your-stash)
+
 [How git stash works](#how-git-stash-works)
 
 # Stashing your work
@@ -1228,13 +1237,7 @@ Using the `--all` option includes changes to any ignored files alongside changes
 
 When you run `git stash pop`, the changes from the commits above are used to update your working copy and index, and the stash reflog is shuffled to remove the popped commit. Note that the popped commits aren't immediately deleted, but do become candidates for future garbage collection.
 	
-Example: 
-	
-```shell
-git config --global user.email "your_email@example.com"
-```
-
-	
+*information found at* [Atlassian BitBucket: git stash](https://www.atlassian.com/git/tutorials/saving-changes/git-stash#managing-multiple-stashes)
 </details>
 
 

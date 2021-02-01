@@ -1673,15 +1673,18 @@ git pull <remote>
 ```
 Fetch the specified remote’s copy of the current branch and immediately merge it into the local copy. This is the same as `git fetch` followed by `git merge origin/`.
 
-```shell git pull --no-commit <remote>
+```shell
+git pull --no-commit <remote>
 ```
 Similar to the default invocation, fetches the remote content but does not create a new merge commit.
 
-```shell git pull --rebase <remote>
+```shell
+git pull --rebase <remote>
 ```
 Same as the previous `pull` Instead of using `git merge` to integrate the remote branch with the local one, use `git rebase`.
 
-```shell git pull --verbose
+```shell
+git pull --verbose
 ```
 Gives verbose output during a pull which displays the content being downloaded and the merge details.
 

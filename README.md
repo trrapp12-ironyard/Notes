@@ -1,6 +1,6 @@
 # Coding Notes Table of Contents
 
-[Node](#node)|[An Accordion in Markdown](#an-accordion-in-markdown)|[Git Commands](#git-commands)|[Coding Project Ideas](#coding-project-ideas)|[Improve Site Speed](#improve-site-speed)|[Future Section 2](#future-section-2)|
+[Node](#node)|[An Accordion in Markdown](#an-accordion-in-markdown)|[Git Commands](#git-commands)|[Coding Project Ideas](#coding-project-ideas)|[Improve Site Speed](#improve-site-speed)|[Arrow Functions](#arrow-functions)|
 |:---:|:---:|:---:|:---:|:---:|:---:|
 |[Future Section 3](#future-section-3)|[Future Section 4](#future-section-4)|[Future Section 5](#future-section-5)|[Future Section 6](#future-section-6)|[Future Section 7](#future-section-7)|[Future Section 8](#future-section-8)|
 
@@ -1965,7 +1965,7 @@ When you run `git stash pop`, the changes from the commits above are used to upd
 
 <br>
 
-# improve-site-speed
+# Improve Site Speed
 
 <details>
 	<summary> Click Here</summary>
@@ -1979,7 +1979,195 @@ When you run `git stash pop`, the changes from the commits above are used to upd
 
 <br>
 
-# Future Section 2
+# Arrow Functions
+
+<details>
+	<summary> Click Here</summary>
+	
+# Arrow Function 
+
+#### What the old way looks like. 
+
+Here we can establish some variables 
+```javascript
+const name = "Max";
+let age = 21;
+const hasHobbies = true;
+
+age = 30;
+```
+
+Now, we can create a normal, vanilla JavaScript function.  Our console would now look like this: 
+
+```javascript
+const name = "Max";
+let age = 21;
+const hasHobbies = true;
+
+age = 30;
+
+function summarizeUser (userName, userAge, userHasHobby) {
+  return (userName, userAge, userHasHobby);
+};
+summarizeUser()
+```
+#### What if we need to set the function to a variable? 
+
+Now we might want to refer to this function in a number of different places.  We can do this easier if we set it equal to a variable "var."  That is the old way of doing it.  A newer, better way would be to use the ECMA6 standard of "const" so that we don't accidentally assign that variable a different value further down in the code and destroy our code.
+
+So now we would turn our old statement from : 
+```javascript
+function summarizeUser (userName, userAge, userHasHobby) {
+  return (userName, userAge, userHasHobby);
+};
+summarizeUser()
+```
+to this: 
+```javascript
+const summarizeUser = function (userName, userAge, userHasHobby) {
+  return (userName, userAge, userHasHobby);
+};
+```
+so our overall code block would become this: 
+
+```javascript
+const name = "Max";
+let age = 21;
+const hasHobbies = true;
+
+age = 30;
+
+const summarizeUser = function (userName, userAge, userHasHobby) {
+  return (userName, userAge, userHasHobby);
+};
+```
+#### From the Old Way to an Arrow Function 
+
+Now let's see what would happen if we use arrow functions syntax to clean up the code.  To do that we would need to remove the word `function` and move in a `=>` after the argument and before the `{}`.  When we do that it becomes an arrow function.
+
+So our old example of:
+
+```javascript
+const summarizeUser = function (userName, userAge, userHasHobby) {
+  return (userName, userAge, userHasHobby);
+};
+```
+becomes:
+
+```javascript
+const summarizeUser = (userName, userAge, userHasHobby) => {
+  return (userName, userAge, userHasHobby);
+};
+```
+This is a basic arrow function.  Notice we have the `const` to say we are initializing a constant, followed by `=` to assign it a value.  Then instead of the word function we start right into the list of arguments.  The `=>` follows.  Finally we end with the `{}` where we put in the working part of the function. And if we were to console.log it it might look like this: 
+
+```javascript
+const name = "Max";
+let age = 21;
+const hasHobbies = true;
+
+age = 30;
+
+const summarizeUser = (userName, userAge, userHasHobby) => {
+  return (userName, userAge, userHasHobby);
+};
+
+console.log(summarizeUser(name, age, hasHobbies))
+```
+
+#### Can we go Even Further?
+
+For these next few examples we are going to get into a few niche situations.  I say niche because they can't be universally applied to all arrow functions.  That being said, they are situations that could be very likely to come up, so they are still very valuable to know. 
+
+In the last situation, we were returning more than one thing in our `console.log()`.  If for some reason though we have a Javascript function that only returns one thing, we can take our arrow syntax and cut it down even further.  
+
+Let's start by setting up what an arrow function with one return statement may look like: 
+
+```javascript
+
+const add = (a,b) => {
+  return a+b;
+}
+```
+
+For this next part to work you have to have a function that 1) has only one statement 2) that statement is a return statement. If we have met those criterion, then you can omit the `{}` and omit the return statement
+
+So our previous example of 
+```javascript
+
+const add = (a,b) => {
+  return a+b;
+}
+```
+would turn into this
+```javascript
+
+const add = (a,b) => a+b
+```
+#### And now, Even Further Down the Rabbit Hole
+
+To take it one step further, if we had the same situation, but only had *one* argument, we can now even remove the `()` from the arguments.  
+
+So our previous example of: 
+```javascript
+
+const add = (a,b) => a+b
+```
+would turn into: 
+```javascript
+
+const add = a,b => a+b
+```
+#### In summary
+
+This is a lot to take in.  So let's review our last example starting from the most basic vanilla JavaScript, and see what each step of shortening it looks like: 
+
+1. start with a separated function which is then called
+```javascript
+function addOne (a) {
+  return a + 1;
+}
+addOne (1)
+```
+2. Turn it into a variable
+```javascript
+const addOne = function (a) {
+  return a + 1;
+}
+```
+3. Turn it into an arrow function
+```javascript
+
+const addOne = (a) => {
+  return a + 1;
+}
+```
+4. Do we meet the '1 - statement line' and '1 - return statement' rule?
+
+```javascript
+const addOne = (a) => a + 1;
+```
+5. Do we meet the 'one parameter' rule? 
+
+```javascript
+const addOne = a => a + 1; 
+```
+
+#### Final Analysis
+
+what we started with: 
+```javascript
+function addOne (a) {
+  return a + 1;
+}
+```
+what we ended with: 
+```javascript
+const addOne = a => a + 1; 
+```
+*examples were provided by [Node JS: The Complete Guide (MVC, REST APIs, GraphQL, Deno](https://www.udemy.com/course/nodejs-the-complete-guide/learn/lecture/11561864#overview)	
+</details>
+
 
 ----
 

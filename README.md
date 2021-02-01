@@ -1381,20 +1381,6 @@ git config --global user.email "your_email@example.com"
 </details>
 
 <details>
-	<summary>git push</summary>
-	
-Usage: 
-	
-Example: 
-	
-```shell
-git config --global user.email "your_email@example.com"
-```
-
-	
-</details>
-
-<details>
 	<summary>git fetch</summary>
 	
 Usage: 
@@ -1511,9 +1497,153 @@ git config --global user.email "your_email@example.com"
 </details>
 
 <details>
+	<summary>git push</summary>
+	
+Usage: Syncing
+git push
+git remote git fetch git push git pull
+The git push command is used to upload local repository content to a remote repository. Pushing is how you transfer commits from your local repository to a remote repo. It's the counterpart to git fetch, but whereas fetching imports commits to local branches, pushing exports commits to remote branches. Remote branches are configured using the git remote command. Pushing has the potential to overwrite changes, caution should be taken when pushing. These issues are discussed below.
+
+Git push usage
+git push <remote> <branch>
+Push the specified branch to , along with all of the necessary commits and internal objects. This creates a local branch in the destination repository. To prevent you from overwriting commits, Git won’t let you push when it results in a non-fast-forward merge in the destination repository.
+
+git push <remote> --force
+Same as the above command, but force the push even if it results in a non-fast-forward merge. Do not use the --force flag unless you’re absolutely sure you know what you’re doing.
+
+git push <remote> --all
+Push all of your local branches to the specified remote.
+
+git push <remote> --tags
+Tags are not automatically pushed when you push a branch or use the --all option. The --tags flag sends all of your local tags to the remote repository.
+
+Git push discussion
+git push is most commonly used to publish an upload local changes to a central repository. After a local repository has been modified a push is executed to share the modifications with remote team members.
+
+Using git push to publish changes
+The above diagram shows what happens when your local master has progressed past the central repository’s master and you publish changes by running git push origin master. Notice how git push is essentially the same as running git merge master from inside the remote repository.
+
+Git push and syncing
+git push is one component of many used in the overall Git "syncing" process. The syncing commands operate on remote branches which are configured using the git remote command. git push can be considered and 'upload' command whereas, git fetch and git pull can be thought of as 'download' commands. Once changesets have been moved via a download or upload a git merge may be performed at the destination to integrate the changes.
+
+Pushing to bare repositories
+A frequently used, modern Git practice is to have a remotely hosted --bare repository act as a central origin repository. This origin repository is often hosted off-site with a trusted 3rd party like Bitbucket. Since pushing messes with the remote branch structure, It is safest and most common to push to repositories that have been created with the --bare flag. Bare repos don’t have a working directory so a push will not alter any in progress working directory content. For more information on bare repository creation, read about git init.
+
+Force Pushing
+Git prevents you from overwriting the central repository’s history by refusing push requests when they result in a non-fast-forward merge. So, if the remote history has diverged from your history, you need to pull the remote branch and merge it into your local one, then try pushing again. This is similar to how SVN makes you synchronize with the central repository via svn update before committing a changeset.
+
+The --force flag overrides this behavior and makes the remote repository’s branch match your local one, deleting any upstream changes that may have occurred since you last pulled. The only time you should ever need to force push is when you realize that the commits you just shared were not quite right and you fixed them with a git commit --amend or an interactive rebase. However, you must be absolutely certain that none of your teammates have pulled those commits before using the --force option.
+
+Examples
+Default git push
+The following example describes one of the standard methods for publishing local contributions to the central repository. First, it makes sure your local master is up-to-date by fetching the central repository’s copy and rebasing your changes on top of them. The interactive rebase is also a good opportunity to clean up your commits before sharing them. Then, the git push command sends all of the commits on your local master to the central repository.
+
+git checkout master
+git fetch origin master
+git rebase -i origin/master
+# Squash commits, fix up commit messages etc.
+git push origin master
+Since we already made sure the local master was up-to-date, this should result in a fast-forward merge, and git push should not complain about any of the non-fast-forward issues discussed above.
+
+Amended force push
+The git commit command accepts a --amend option which will update the previous commit. A commit is often amended to update the commit message or add new changes. Once a commit is amended a git push will fail because Git will see the amended commit and the remote commit as diverged content. The --force option must be used to push an amended commit.
+
+# make changes to a repo and git add
+git commit --amend
+# update the existing commit message
+git push --force origin master
+The above example assumes it is being executed on an existing repository with a commit history. git commit --amend is used to update the previous commit. The amended commit is then force pushed using the --force option.
+
+Deleting a remote branch or tag
+Sometimes branches need to be cleaned up for book keeping or organizational purposes. The fully delete a branch, it must be deleted locally and also remotely.
+
+git branch -D branch_name
+git push origin :branch_name
+The above will delete the remote branch named branch_name passing a branch name prefixed with a colon to git push will delete the remote branch.
+
+
+	
+Example: 
+	
+```shell
+git config --global user.email "your_email@example.com"
+```
+
+	
+</details>
+
+<details>
 	<summary>git pull</summary>
 	
 Usage: 
+
+git pull
+git remote git fetch git push git pull
+The git pull command is used to fetch and download content from a remote repository and immediately update the local repository to match that content. Merging remote upstream changes into your local repository is a common task in Git-based collaboration work flows. The git pull command is actually a combination of two other commands, git fetch followed by git merge. In the first stage of operation git pull will execute a git fetch scoped to the local branch that HEAD is pointed at. Once the content is downloaded, git pull will enter a merge workflow. A new merge commit will be-created and HEAD updated to point at the new commit.
+
+Git pull usage
+How it works
+The git pull command first runs git fetch which downloads content from the specified remote repository. Then a git merge is executed to merge the remote content refs and heads into a new local merge commit. To better demonstrate the pull and merging process let us consider the following example. Assume we have a repository with a master branch and a remote origin.
+
+
+In this scenario, git pull will download all the changes from the point where the local and master diverged. In this example, that point is E. git pull will fetch the diverged remote commits which are A-B-C. The pull process will then create a new local merge commit containing the content of the new diverged remote commits.
+
+
+In the above diagram, we can see the new commit H. This commit is a new merge commit that contains the contents of remote A-B-C commits and has a combined log message. This example is one of a few git pull merging strategies. A --rebase option can be passed to git pull to use a rebase merging strategy instead of a merge commit. The next example will demonstrate how a rebase pull works. Assume that we are at a starting point of our first diagram, and we have executed git pull --rebase.
+
+
+In this diagram, we can now see that a rebase pull does not create the new H commit. Instead, the rebase has copied the remote commits A--B--C and rewritten the local commits E--F--G to appear after them them in the local origin/master commit history.
+
+Common Options
+git pull <remote>
+Fetch the specified remote’s copy of the current branch and immediately merge it into the local copy. This is the same as git fetch followed by git merge origin/.
+
+git pull --no-commit <remote>
+Similar to the default invocation, fetches the remote content but does not create a new merge commit.
+
+git pull --rebase <remote>
+Same as the previous pull Instead of using git merge to integrate the remote branch with the local one, use git rebase.
+
+git pull --verbose
+Gives verbose output during a pull which displays the content being downloaded and the merge details.
+
+Git pull discussion
+You can think of git pull as Git's version of svn update. It’s an easy way to synchronize your local repository with upstream changes. The following diagram explains each step of the pulling process.
+
+
+You start out thinking your repository is synchronized, but then git fetch reveals that origin's version of master has progressed since you last checked it. Then git merge immediately integrates the remote master into the local one.
+
+Git pull and syncing
+git pull is one of many commands that claim the responsibility of 'syncing' remote content. The git remote command is used to specify what remote endpoints the syncing commands will operate on. The git push command is used to upload content to a remote repository.
+
+The git fetch command can be confused with git pull. They are both used to download remote content. An important safety distinction can be made between git pull and get fetch. git fetch can be considered the "safe" option whereas, git pull can be considered unsafe. git fetch will download the remote content and not alter the state of the local repository. Alternatively, git pull will download remote content and immediately attempt to change the local state to match that content. This may unintentionally cause the local repository to get in a conflicted state.
+
+Pulling via Rebase
+The --rebase option can be used to ensure a linear history by preventing unnecessary merge commits. Many developers prefer rebasing over merging, since it’s like saying, "I want to put my changes on top of what everybody else has done." In this sense, using git pull with the --rebase flag is even more like svn update than a plain git pull.
+
+In fact, pulling with --rebase is such a common workflow that there is a dedicated configuration option for it:
+
+git config --global branch.autosetuprebase always
+After running that command, all git pull commands will integrate via git rebase instead of git merge.
+
+Git Pull Examples
+The following examples demonstrate how to use git pull in common scenarios:
+
+Default Behavior
+git pull
+Executing the default invocation of git pull will is equivalent to git fetch origin HEAD and git merge HEAD where HEAD is ref pointing to the current branch.
+
+Git pull on remotes
+git checkout new_feature
+git pull <remote repo>
+This example first performs a checkout and switches to the branch. Following that, the git pull is executed with being passed. This will implicitly pull down the newfeature branch from . Once the download is complete it will initiate a git merge.
+
+Git pull rebase instead of merge
+The following example demonstrates how to synchronize with the central repository's master branch using a rebase:
+
+git checkout master
+git pull --rebase origin
+This simply moves your local changes onto the top of what everybody else has already contributed.
 	
 Example: 
 	

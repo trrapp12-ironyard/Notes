@@ -1,6 +1,6 @@
 # Coding Notes Table of Contents
 
-[App.js](#app.js)|[An Accordion in Markdown](#an-accordion-in-markdown)|[Git Commands](#git-commands)|[Coding Project Ideas](#coding-project-ideas)|[Improve Site Speed](#improve-site-speed)|[Future Section 2](#future-section-2)|
+[Node](#node)|[An Accordion in Markdown](#an-accordion-in-markdown)|[Git Commands](#git-commands)|[Coding Project Ideas](#coding-project-ideas)|[Improve Site Speed](#improve-site-speed)|[Future Section 2](#future-section-2)|
 |:---:|:---:|:---:|:---:|:---:|:---:|
 |[Future Section 3](#future-section-3)|[Future Section 4](#future-section-4)|[Future Section 5](#future-section-5)|[Future Section 6](#future-section-6)|[Future Section 7](#future-section-7)|[Future Section 8](#future-section-8)|
 
@@ -8,9 +8,11 @@
 
 <br>
 
-# App.js
+# Node
 
-##### How to start web page on Node.js from command line
+<details>
+	<summary> App.js </summary>
+	##### How to start web page on Node.js from command line
 
 1) create "app.js" file <br>
 2) include the following code in the app.js file 
@@ -60,6 +62,13 @@ server.listen(port, function (error) {
 })
 
 ```
+</details>
+<details>
+	<summary> Getting CSS to load in App.js</summary>
+
+</details>
+
+
 ----
 
 <br>

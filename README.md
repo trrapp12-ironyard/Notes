@@ -1956,10 +1956,13 @@ When you run `git stash pop`, the changes from the commits above are used to upd
 
 <br>
 
+# improve-site-speed
+
 <details>
-	<summary> # Improve Site Speed </summary>
+	<summary> Click Here</summary>
 	
 	![Screenshot of article on how to improve site speed](https://user-images.githubusercontent.com/11747875/106478497-7eb27b00-6466-11eb-880b-00e7385aebe4.png)
+	
 </details>
 
 

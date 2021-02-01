@@ -1247,13 +1247,12 @@ SVN uses a single centralized repository to serve as the communication hub for d
 
 The `git remote` command is one piece of the broader system which is responsible for syncing changes. Records registered through the `git remote` command are used in conjunction with the git fetch, git push, and git pull commands. These commands all have their own syncing responsibilities which can be explored on the corresponding links.
 
-Git remote
+# Git remote
 The `git remote` command lets you create, view, and delete connections to other repositories. Remote connections are more like bookmarks rather than direct links into other repositories. Instead of providing real-time access to another repository, they serve as convenient names that can be used to reference a not-so-convenient URL.
 
 For example, the following diagram shows two remote connections from your repo into the central repo and another developer’s repo. Instead of referencing them by their full URLs, you can pass the origin and john shortcuts to other Git commands.
 
-Using `git remote` to connect other repositories
-`Git remote` usage overview
+# Git remote usage overview
 The `git remote` command is essentially an interface for managing a list of remote entries that are stored in the repository's ./.git/config file. The following commands are used to view the current state of the remote list.
 
 Viewing `git remote` configurations

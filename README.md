@@ -994,6 +994,96 @@ This command deletes the feature branch.
 	<summary>git checkout</summary>
 	
 Usage: 
+
+Undoing Commits & Changes
+git checkout git clean git revert git reset git rm
+In this section, we will discuss the available 'undo' Git strategies and commands. It is first important to note that Git does not have a traditional 'undo' system like those found in a word processing application. It will be beneficial to refrain from mapping Git operations to any traditional 'undo' mental model. Additionally, Git has its own nomenclature for 'undo' operations that it is best to leverage in a discussion. This nomenclature includes terms like reset, revert, checkout, clean, and more.
+
+A fun metaphor is to think of Git as a timeline management utility. Commits are snapshots of a point in time or points of interest along the timeline of a project's history. Additionally, multiple timelines can be managed through the use of branches. When 'undoing' in Git, you are usually moving back in time, or to another timeline where mistakes didn't happen.
+
+This tutorial provides all of the necessary skills to work with previous revisions of a software project. First, it shows you how to explore old commits, then it explains the difference between reverting public commits in the project history vs. resetting unpublished changes on your local machine.
+
+Finding what is lost: Reviewing old commits
+The whole idea behind any version control system is to store “safe” copies of a project so that you never have to worry about irreparably breaking your code base. Once you’ve built up a project history of commits, you can review and revisit any commit in the history. One of the best utilities for reviewing the history of a Git repository is the git log command. In the example below, we use git log to get a list of the latest commits to a popular open-source graphics library.
+
+ 
+git log --oneline e2f9a78fe Replaced FlyControls with OrbitControls d35ce0178 Editor: Shortcuts panel Safari support. 9dbe8d0cf Editor: Sidebar.Controls to Sidebar.Settings.Shortcuts. Clean up. 05c5288fc Merge pull request #12612 from TyLindberg/editor-controls-panel 0d8b6e74b Merge pull request #12805 from harto/patch-1 23b20c22e Merge pull request #12801 from gam0022/improve-raymarching-example-v2 fe78029f1 Fix typo in documentation 7ce43c448 Merge pull request #12794 from WestLangley/dev-x 17452bb93 Merge pull request #12778 from OndrejSpanel/unitTestFixes b5c1b5c70 Merge pull request #12799 from dhritzkiv/patch-21 1b48ff4d2 Updated builds. 88adbcdf6 WebVRManager: Clean up. 2720fbb08 Merge pull request #12803 from dmarcos/parentPoseObject 9ed629301 Check parent of poseObject instead of camera 219f3eb13 Update GLTFLoader.js 15f13bb3c Update GLTFLoader.js 6d9c22a3b Update uniforms only when onWindowResize 881b25b58 Update ProjectionMatrix on change aspect 
+Each commit has a unique SHA-1 identifying hash. These IDs are used to travel through the committed timeline and revisit commits. By default, git log will only show commits for the currently selected branch. It is entirely possible that the commit you're looking for is on another branch. You can view all commits across all branches by executing git log --branches=*. The command git branch is used to view and visit other branches. Invoking the command, git branch -a will return a list of all known branch names. One of these branch names can then be logged using git log.
+
+When you have found a commit reference to the point in history you want to visit, you can utilize the git checkout command to visit that commit. Git checkout is an easy way to “load” any of these saved snapshots onto your development machine. During the normal course of development, the HEAD usually points to master or some other local branch, but when you check out a previous commit, HEAD no longer points to a branch—it points directly to a commit. This is called a “detached HEAD” state, and it can be visualized as the following:
+
+Git Tutorial: Checking out a previous commit
+Checking out an old file does not move the HEAD pointer. It remains on the same branch and same commit, avoiding a 'detached head' state. You can then commit the old version of the file in a new snapshot as you would any other changes. So, in effect, this usage of git checkout on a file, serves as a way to revert back to an old version of an individual file. For more information on these two modes visit the git checkout page
+
+Viewing an old revision
+This example assumes that you’ve started developing a crazy experiment, but you’re not sure if you want to keep it or not. To help you decide, you want to take a look at the state of the project before you started your experiment. First, you’ll need to find the ID of the revision you want to see.
+
+git log --oneline
+Let’s say your project history looks something like the following:
+
+b7119f2 Continue doing crazy things 872fa7e Try something crazy a1e8fb5 Make some important changes to hello.txt 435b61d Create hello.txt 9773e52 Initial import
+You can use git checkout to view the “Make some import changes to hello.txt” commit as follows:
+
+ 
+git checkout a1e8fb5
+This makes your working directory match the exact state of the a1e8fb5 commit. You can look at files, compile the project, run tests, and even edit files without worrying about losing the current state of the project. Nothing you do in here will be saved in your repository. To continue developing, you need to get back to the “current” state of your project:
+
+ 
+git checkout master
+This assumes that you're developing on the default master branch. Once you’re back in the master branch, you can use either git revert or git reset to undo any undesired changes.
+
+Undoing a committed snapshot
+There are technically several different strategies to 'undo' a commit. The following examples will assume we have a commit history that looks like:
+
+git log --oneline 872fa7e Try something crazy a1e8fb5 Make some important changes to hello.txt 435b61d Create hello.txt 9773e52 Initial import
+We will focus on undoing the 872fa7e Try something crazy commit. Maybe things got a little too crazy.
+
+How to undo a commit with git checkout
+Using the git checkout command we can checkout the previous commit, a1e8fb5, putting the repository in a state before the crazy commit happened. Checking out a specific commit will put the repo in a "detached HEAD" state. This means you are no longer working on any branch. In a detached state, any new commits you make will be orphaned when you change branches back to an established branch. Orphaned commits are up for deletion by Git's garbage collector. The garbage collector runs on a configured interval and permanently destroys orphaned commits. To prevent orphaned commits from being garbage collected, we need to ensure we are on a branch.
+
+From the detached HEAD state, we can execute git checkout -b new_branch_without_crazy_commit. This will create a new branch named new_branch_without_crazy_commit and switch to that state. The repo is now on a new history timeline in which the 872fa7e commit no longer exists. At this point, we can continue work on this new branch in which the 872fa7e commit no longer exists and consider it 'undone'. Unfortunately, if you need the previous branch, maybe it was your master branch, this undo strategy is not appropriate. Let's look at some other 'undo' strategies. For more information and examples review our in-depth git checkout discussion.
+
+How to undo a public commit with git revert
+Let's assume we are back to our original commit history example. The history that includes the 872fa7e commit. This time let's try a revert 'undo'. If we execute git revert HEAD, Git will create a new commit with the inverse of the last commit. This adds a new commit to the current branch history and now makes it look like:
+
+ 
+git log --oneline e2f9a78 Revert "Try something crazy" 872fa7e Try something crazy a1e8fb5 Make some important changes to hello.txt 435b61d Create hello.txt 9773e52 Initial import
+At this point, we have again technically 'undone' the 872fa7e commit. Although 872fa7e still exists in the history, the new e2f9a78 commit is an inverse of the changes in 872fa7e. Unlike our previous checkout strategy, we can continue using the same branch. This solution is a satisfactory undo. This is the ideal 'undo' method for working with public shared repositories. If you have requirements of keeping a curated and minimal Git history this strategy may not be satisfactory.
+
+How to undo a commit with git reset
+For this undo strategy we will continue with our working example. git reset is an extensive command with multiple uses and functions. If we invoke git reset --hard a1e8fb5 the commit history is reset to that specified commit. Examining the commit history with git log will now look like:
+
+ 
+git log --oneline a1e8fb5 Make some important changes to hello.txt 435b61d Create hello.txt 9773e52 Initial import
+The log output shows the e2f9a78 and 872fa7e commits no longer exist in the commit history. At this point, we can continue working and creating new commits as if the 'crazy' commits never happened. This method of undoing changes has the cleanest effect on history. Doing a reset is great for local changes however it adds complications when working with a shared remote repository. If we have a shared remote repository that has the 872fa7e commit pushed to it, and we try to git push a branch where we have reset the history, Git will catch this and throw an error. Git will assume that the branch being pushed is not up to date because of it's missing commits. In these scenarios, git revert should be the preferred undo method.
+
+Undoing the last commit
+In the previous section, we discussed different strategies for undoing commits. These strategies are all applicable to the most recent commit as well. In some cases though, you might not need to remove or reset the last commit. Maybe it was just made prematurely. In this case you can amend the most recent commit. Once you have made more changes in the working directory and staged them for commit by using git add, you can execute git commit --amend. This will have Git open the configured system editor and let you modify the last commit message. The new changes will be added to the amended commit.
+
+Undoing uncommitted changes
+Before changes are committed to the repository history, they live in the staging index and the working directory. You may need to undo changes within these two areas. The staging index and working directory are internal Git state management mechanisms. For more detailed information on how these two mechanisms operate, visit the git reset page which explores them in depth.
+
+The working directory
+The working directory is generally in sync with the local file system. To undo changes in the working directory you can edit files like you normally would using your favorite editor. Git has a couple utilities that help manage the working directory. There is the git clean command which is a convenience utility for undoing changes to the working directory. Additionally, git reset can be invoked with the --mixed or --hard options and will apply a reset to the working directory.
+
+The staging index
+The git add command is used to add changes to the staging index. Git reset is primarily used to undo the staging index changes. A --mixed reset will move any pending changes from the staging index back into the working directory.
+
+Undoing public changes
+When working on a team with remote repositories, extra consideration needs to be made when undoing changes. Git reset should generally be considered a 'local' undo method. A reset should be used when undoing changes to a private branch. This safely isolates the removal of commits from other branches that may be in use by other developers. Problems arise when a reset is executed on a shared branch and that branch is then pushed remotely with git push. Git will block the push in this scenario complaining that the branch being pushed is out of date from the remote branch as it is missing commits.
+
+The preferred method of undoing shared history is git revert. A revert is safer than a reset because it will not remove any commits from a shared history. A revert will retain the commits you want to undo and create a new commit that inverts the undesired commit. This method is safer for shared remote collaboration because a remote developer can then pull the branch and receive the new revert commit which undoes the undesired commit.
+
+Summary
+We covered many high-level strategies for undoing things in Git. It's important to remember that there is more than one way to 'undo' in a Git project. Most of the discussion on this page touched on deeper topics that are more thoroughly explained on pages specific to the relevant Git commands. The most commonly used 'undo' tools are git checkout, git revert, and git reset. Some key points to remember are:
+
+Once changes have been committed they are generally permanent
+Use git checkout to move around and review the commit history
+git revert is the best tool for undoing shared public changes
+git reset is best used for undoing local private changes
+In addition to the primary undo commands, we took a look at other Git utilities: git log for finding lost commits git clean for undoing uncommitted changes git add for modifying the staging index.
+
+Each of these commands has its own in-depth documentation. To learn more about a specific command mentioned here, visit the corresponding links.
 	
 Example: 
 	
@@ -1008,6 +1098,127 @@ git config --global user.email "your_email@example.com"
 	<summary>git merge</summary>
 	
 Usage: 
+
+Git Merge
+ 
+
+Merging is Git's way of putting a forked history back together again. The git merge command lets you take the independent lines of development created by git branch and integrate them into a single branch.
+
+Note that all of the commands presented below merge into the current branch. The current branch will be updated to reflect the merge, but the target branch will be completely unaffected. Again, this means that git merge is often used in conjunction with git checkout for selecting the current branch and git branch -d for deleting the obsolete target branch.
+
+How it works
+Git merge will combine multiple sequences of commits into one unified history. In the most frequent use cases, git merge is used to combine two branches. The following examples in this document will focus on this branch merging pattern. In these scenarios, git merge takes two commit pointers, usually the branch tips, and will find a common base commit between them. Once Git finds a common base commit it will create a new "merge commit" that combines the changes of each queued merge commit sequence.
+
+Say we have a new branch feature that is based off the master branch. We now want to merge this feature branch into master.
+
+
+Invoking this command will merge the specified branch feature into the current branch, we'll assume master. Git will determine the merge algorithm automatically (discussed below).
+
+
+Merge commits are unique against other commits in the fact that they have two parent commits. When creating a merge commit Git will attempt to auto magically merge the separate histories for you. If Git encounters a piece of data that is changed in both histories it will be unable to automatically combine them. This scenario is a version control conflict and Git will need user intervention to continue. 
+
+Preparing to merge
+Before performing a merge there are a couple of preparation steps to take to ensure the merge goes smoothly.
+
+Confirm the receiving branch
+Execute git status to ensure that HEAD is pointing to the correct merge-receiving branch. If needed, execute git checkout to switch to the receiving branch. In our case we will execute git checkout master.
+
+Fetch latest remote commits
+Make sure the receiving branch and the merging branch are up-to-date with the latest remote changes. Execute git fetch to pull the latest remote commits. Once the fetch is completed ensure the master branch has the latest updates by executing git pull.
+
+Merging
+Once the previously discussed "preparing to merge" steps have been taken a merge can be initiated by executing git merge where  is the name of the branch that will be merged into the receiving branch.
+
+Fast Forward Merge
+A fast-forward merge can occur when there is a linear path from the current branch tip to the target branch. Instead of “actually” merging the branches, all Git has to do to integrate the histories is move (i.e., “fast forward”) the current branch tip up to the target branch tip. This effectively combines the histories, since all of the commits reachable from the target branch are now available through the current one. For example, a fast forward merge of some-feature into master would look something like the following:
+
+
+However, a fast-forward merge is not possible if the branches have diverged. When there is not a linear path to the target branch, Git has no choice but to combine them via a 3-way merge. 3-way merges use a dedicated commit to tie together the two histories. The nomenclature comes from the fact that Git uses three commits to generate the merge commit: the two branch tips and their common ancestor.
+
+
+
+While you can use either of these merge strategies, many developers like to use fast-forward merges (facilitated through rebasing) for small features or bug fixes, while reserving 3-way merges for the integration of longer-running features. In the latter case, the resulting merge commit serves as a symbolic joining of the two branches.
+
+Our first example demonstrates a fast-forward merge. The code below creates a new branch, adds two commits to it, then integrates it into the main line with a fast-forward merge.
+
+# Start a new feature
+git checkout -b new-feature master
+# Edit some files
+git add <file>
+git commit -m "Start a feature"
+# Edit some files
+git add <file>
+git commit -m "Finish a feature"
+# Merge in the new-feature branch
+git checkout master
+git merge new-feature
+git branch -d new-feature
+This is a common workflow for short-lived topic branches that are used more as an isolated development than an organizational tool for longer-running features.
+
+Also note that Git should not complain about the git branch -d, since new-feature is now accessible from the master branch.
+
+In the event that you require a merge commit during a fast forward merge for record keeping purposes you can execute git merge with the --no-ffoption.
+
+git merge --no-ff <branch>
+This command merges the specified branch into the current branch, but always generates a merge commit (even if it was a fast-forward merge). This is useful for documenting all merges that occur in your repository.
+
+3-way merge
+The next example is very similar, but requires a 3-way merge because master progresses while the feature is in-progress. This is a common scenario for large features or when several developers are working on a project simultaneously.
+
+Start a new feature
+git checkout -b new-feature master
+# Edit some files
+git add <file>
+git commit -m "Start a feature"
+# Edit some files
+git add <file>
+git commit -m "Finish a feature"
+# Develop the master branch
+git checkout master
+# Edit some files
+git add <file>
+git commit -m "Make some super-stable changes to master"
+# Merge in the new-feature branch
+git merge new-feature
+git branch -d new-feature
+Note that it’s impossible for Git to perform a fast-forward merge, as there is no way to move master up to new-feature without backtracking.
+
+For most workflows, new-feature would be a much larger feature that took a long time to develop, which would be why new commits would appear on master in the meantime. If your feature branch was actually as small as the one in the above example, you would probably be better off rebasing it onto master and doing a fast-forward merge. This prevents superfluous merge commits from cluttering up the project history.
+
+Resolving conflict
+If the two branches you're trying to merge both changed the same part of the same file, Git won't be able to figure out which version to use. When such a situation occurs, it stops right before the merge commit so that you can resolve the conflicts manually.
+
+The great part of Git's merging process is that it uses the familiar edit/stage/commit workflow to resolve merge conflicts. When you encounter a merge conflict, running the git status command shows you which files need to be resolved. For example, if both branches modified the same section of hello.py, you would see something like the following:
+
+On branch master
+Unmerged paths:
+(use "git add/rm ..." as appropriate to mark resolution)
+both modified: hello.py
+How conflicts are presented
+When Git encounters a conflict during a merge, It will edit the content of the affected files with visual indicators that mark both sides of the conflicted content. These visual markers are: <<<<<<<, =======, and >>>>>>>. Its helpful to search a project for these indicators during a merge to find where conflicts need to be resolved.
+
+here is some content not affected by the conflict
+<<<<<<< master
+this is conflicted text from master
+=======
+this is conflicted text from feature branch
+>>>>>>> feature branch;
+Generally the content before the ======= marker is the receiving branch and the part after is the merging branch.
+
+Once you've identified conflicting sections, you can go in and fix up the merge to your liking. When you're ready to finish the merge, all you have to do is run git add on the conflicted file(s) to tell Git they're resolved. Then, you run a normal git commit to generate the merge commit. It’s the exact same process as committing an ordinary snapshot, which means it’s easy for normal developers to manage their own merges.
+
+Note that merge conflicts will only occur in the event of a 3-way merge. It’s not possible to have conflicting changes in a fast-forward merge. 
+
+Summary
+This document is an overview of the git merge command. Merging is an essential process when working with Git. We discussed the internal mechanics behind a merge and the differences between a fast forward merge and a three way, true merge. Some key take-aways are:
+ 
+
+Git merging combines sequences of commits into one unified history of commits.
+There are two main ways Git will merge: Fast Forward and Three way
+Git can automatically merge commits unless there are changes that conflict in both commit sequences.
+This document integrated and referenced other Git commands like: git branch, git pull, and git fetch. Visit their corresponding stand-alone pages for more information. 
+
+
 	
 Example: 
 	
@@ -1023,6 +1234,143 @@ git config --global user.email "your_email@example.com"
 	
 Usage: 
 	
+git syncing
+git remote git fetch git push git pull
+SVN uses a single centralized repository to serve as the communication hub for developers, and collaboration takes place by passing changesets between the developers’ working copies and the central repository. This is different from Git's distributed collaboration model, which gives every developer their own copy of the repository, complete with its own local history and branch structure. Users typically need to share a series of commits rather than a single changeset. Instead of committing a changeset from a working copy to the central repository, Git lets you share entire branches between repositories.
+
+The git remote command is one piece of the broader system which is responsible for syncing changes. Records registered through the git remote command are used in conjunction with the git fetch, git push, and git pull commands. These commands all have their own syncing responsibilities which can be explored on the corresponding links.
+
+Git remote
+The git remote command lets you create, view, and delete connections to other repositories. Remote connections are more like bookmarks rather than direct links into other repositories. Instead of providing real-time access to another repository, they serve as convenient names that can be used to reference a not-so-convenient URL.
+
+For example, the following diagram shows two remote connections from your repo into the central repo and another developer’s repo. Instead of referencing them by their full URLs, you can pass the origin and john shortcuts to other Git commands.
+
+Using git remote to connect other repositories
+Git remote usage overview
+The git remote command is essentially an interface for managing a list of remote entries that are stored in the repository's ./.git/config file. The following commands are used to view the current state of the remote list.
+
+Viewing git remote configurations
+git remote
+List the remote connections you have to other repositories.
+
+git remote -v
+Same as the above command, but include the URL of each connection.
+
+Creating and modifying git remote configurations
+The git remote command is also a convenience or 'helper' method for modifying a repo's ./.git/config file. The commands presented below let you manage connections with other repositories. The following commands will modify the repo's /.git/config file. The result of the following commands can also be achieved by directly editing the ./.git/config file with a text editor.
+
+git remote add <name> <url>
+Create a new connection to a remote repository. After adding a remote, you’ll be able to use as a convenient shortcut for in other Git commands.
+
+git remote rm <name>
+Remove the connection to the remote repository called .
+
+git remote rename <old-name> <new-name>
+Rename a remote connection from to .
+
+Git remote discussion
+Git is designed to give each developer an entirely isolated development environment. This means that information is not automatically passed back and forth between repositories. Instead, developers need to manually pull upstream commits into their local repository or manually push their local commits back up to the central repository. The git remote command is really just an easier way to pass URLs to these "sharing" commands.
+
+The origin Remote
+When you clone a repository with git clone, it automatically creates a remote connection called origin pointing back to the cloned repository. This is useful for developers creating a local copy of a central repository, since it provides an easy way to pull upstream changes or publish local commits. This behavior is also why most Git-based projects call their central repository origin.
+
+Repository URLs
+Git supports many ways to reference a remote repository. Two of the easiest ways to access a remote repo are via the HTTP and the SSH protocols. HTTP is an easy way to allow anonymous, read-only access to a repository. For example:
+
+http://host/path/to/repo.git
+But, it’s generally not possible to push commits to an HTTP address (you wouldn’t want to allow anonymous pushes anyways). For read-write access, you should use SSH instead:
+
+ssh://user@host/path/to/repo.git
+You’ll need a valid SSH account on the host machine, but other than that, Git supports authenticated access via SSH out of the box. Modern secure 3rd party hosting solutions like Bitbucket.com will provide these URLs for you.
+
+Git remote commands
+The git remote command is one of many Git commands that takes additional appended 'subcommands'. Below is an examination of the commonly used git remote subcommands.
+
+ADD <NAME> <URL>
+Adds a record to ./.git/config for remote named at the repository url .
+
+Accepts a -f option, that will git fetch immediately after the remote record is created.
+
+Accepts a --tags option, that will git fetch immediately and import every tag from the remote repository.
+
+RENAME <OLD> <NEW>
+Updates ./.git/config to rename the record to . All remote-tracking branches and configuration settings for the remote are updated.
+
+REMOVE or RM <NAME>
+Modifies ./.git/config and removes the remote named . All remote-tracking branches and configuration settings for the remote are removed.
+
+GET-URL <NAME>
+Outputs the URLs for a remote record.
+
+Accepts --push, push URLs are queried rather than fetch URLs.
+
+With --all, all URLs for the remote will be listed.
+
+SHOW <NAME>
+Outputs high-level information about the remote .
+
+PRUNE <NAME>
+Deletes any local branches for that are not present on the remote repository.
+
+Accepts a --dry-run option which will list what branches are set to be pruned, but will not actually prune them.
+
+Git remote examples
+In addition to origin, it’s often convenient to have a connection to your teammates’ repositories. For example, if your co-worker, John, maintained a publicly accessible repository on dev.example.com/john.git, you could add a connection as follows:
+
+git remote add john http://dev.example.com/john.git
+Having this kind of access to individual developers’ repositories makes it possible to collaborate outside of the central repository. This can be very useful for small teams working on a large project.
+
+Showing your remotes
+By default, the git remote command will list previously stored remote connections to other repositories. This will produce single line output that lists the names of "bookmark" name of remote repos.
+
+$ git remote
+origin
+upstream
+other_users_repo
+Invoking git remote with the -v option will print the list of bookmarked repository names and additionally, the corresponding repository URL. The -v option stands for "verbose". Below is example output of verbose git remote output.
+
+git remote -v
+origin  git@bitbucket.com:origin_user/reponame.git (fetch)
+origin  git@bitbucket.com:origin_user/reponame.git (push)
+upstream    https://bitbucket.com/upstream_user/reponame.git (fetch)
+upstream    https://bitbucket.com/upstream_user/reponame.git (push)
+other_users_repo    https://bitbucket.com/other_users_repo/reponame (fetch)
+other_users_repo    https://bitbucket.com/other_users_repo/reponame (push)
+Adding Remote Repositories
+The git remote add command will create a new connection record to a remote repository. After adding a remote, you’ll be able to use as a convenient shortcut for in other Git commands. For more information on the accepted URL syntax, view the "Repository URLs" section below. This command will create a new record within the repository's ./.git/config. An example of this config file update follows:
+
+$ git remote add fake_test https://bitbucket.com/upstream_user/reponame.git; [remote "remote_test"] 
+   url = https://bitbucket.com/upstream_user/reponame.git 
+   fetch = +refs/heads/*:refs/remotes/remote_test/*
+Inspecting a Remote
+The show subcommand can be appended to git remote to give detailed output on the configuration of a remote. This output will contain a list of branches associated with the remote and also the endpoints attached for fetching and pushing.
+
+git remote show upstream
+* remote upstream
+   Fetch URL: https://bitbucket.com/upstream_user/reponame.git
+   Push URL: https://bitbucket.com/upstream_user/reponame.git
+   HEAD branch: master
+   Remote branches:
+      master tracked
+      simd-deprecated tracked
+      tutorial tracked
+   Local ref configured for 'git push':
+      master pushes to master (fast-forwardable)
+Fetching and pulling from Git remotes
+Once a remote record has been configured through the use of the git remote command, the remote name can be passed as an argument to other Git commands to communicate with the remote repo. Both git fetch, and git pull can be used to read from a remote repository. Both commands have different operations that are explained in further depth on their respective links.
+
+Pushing to Git remotes
+The git push command is used to write to a remote repository.
+
+git push <remote-name> <branch-name>
+This example will upload the local state of to the remote repository specified by .
+
+Renaming and Removing Remotes
+git remote rename <old-name> <new-name>
+The command git remote rename is self-explanatory. When executed, this command will rename a remote connection from to . Additionally, this will modify the contents of ./.git/config to rename the record for the remote there as well.
+
+git remote rm <name>
+The command git remote rm will remove the connection to the remote repository specified by the parameter. To demonstrate let us 'undo' the remote addition from our last example. If we execute git remote rm remote_test, and then examine the contents of ./.git/config we can see that the [remote "remote_test"] record is no longer there.
 Example: 
 	
 ```shell
@@ -1036,6 +1384,122 @@ git config --global user.email "your_email@example.com"
 	<summary>git push</summary>
 	
 Usage: 
+	
+Example: 
+	
+```shell
+git config --global user.email "your_email@example.com"
+```
+
+	
+</details>
+
+<details>
+	<summary>git fetch</summary>
+	
+Usage: 
+
+git fetch
+git remote git fetch git push git pull
+The git fetch command downloads commits, files, and refs from a remote repository into your local repo. Fetching is what you do when you want to see what everybody else has been working on. It’s similar to svn update in that it lets you see how the central history has progressed, but it doesn’t force you to actually merge the changes into your repository. Git isolates fetched content from existing local content; it has absolutely no effect on your local development work. Fetched content has to be explicitly checked out using the git checkout command. This makes fetching a safe way to review commits before integrating them with your local repository.
+
+When downloading content from a remote repo, git pull and git fetch commands are available to accomplish the task. You can consider git fetch the 'safe' version of the two commands. It will download the remote content but not update your local repo's working state, leaving your current work intact. git pull is the more aggressive alternative; it will download the remote content for the active local branch and immediately execute git merge to create a merge commit for the new remote content. If you have pending changes in progress this will cause conflicts and kick-off the merge conflict resolution flow.
+
+How git fetch works with remote branches
+To better understand how git fetch works let us discuss how Git organizes and stores commits. Behind the scenes, in the repository's ./.git/objects directory, Git stores all commits, local and remote. Git keeps remote and local branch commits distinctly separate through the use of branch refs. The refs for local branches are stored in the ./.git/refs/heads/. Executing the git branch command will output a list of the local branch refs. The following is an example of git branch output with some demo branch names.
+
+git branch
+master
+feature1
+debug2
+Examining the contents of the /.git/refs/heads/ directory would reveal similar output.
+
+ls ./.git/refs/heads/
+master
+feature1
+debug2
+Remote branches are just like local branches, except they map to commits from somebody else’s repository. Remote branches are prefixed by the remote they belong to so that you don’t mix them up with local branches. Like local branches, Git also has refs for remote branches. Remote branch refs live in the ./.git/refs/remotes/ directory. The next example code snippet shows the branches you might see after fetching a remote repo conveniently named remote-repo:
+
+git branch -r
+# origin/master
+# origin/feature1
+# origin/debug2
+# remote-repo/master
+# remote-repo/other-feature
+This output displays the local branches we had previously examined but now displays them prefixed with origin/. Additionally, we now see the remote branches prefixed with remote-repo. You can check out a remote branch just like a local one, but this puts you in a detached HEAD state (just like checking out an old commit). You can think of them as read-only branches. To view your remote branches, simply pass the -r flag to the git branch command.
+
+You can inspect remote branches with the usual git checkout and git log commands. If you approve the changes a remote branch contains, you can merge it into a local branch with a normal git merge. So, unlike SVN, synchronizing your local repository with a remote repository is actually a two-step process: fetch, then merge. The git pull command is a convenient shortcut for this process.
+
+Git fetch commands and options
+git fetch <remote>
+Fetch all of the branches from the repository. This also downloads all of the required commits and files from the other repository.
+
+git fetch <remote> <branch>
+Same as the above command, but only fetch the specified branch.
+
+git fetch --all
+A power move which fetches all registered remotes and their branches:
+
+git fetch --dry-run
+The --dry-run option will perform a demo run of the command. It will output examples of actions it will take during the fetch but not apply them.
+
+Git fetch examples
+git fetch a remote branch
+The following example will demonstrate how to fetch a remote branch and update your local working state to the remote contents. In this example, let us assume there is a central repo origin from which the local repository has been cloned from using the git clone command. Let us also assume an additional remote repository named coworkers_repo that contains a feature_branch which we will configure and fetch. With these assumptions set let us continue the example.
+
+Firstly we will need to configure the remote repo using the git remote command.
+
+git remote add coworkers_repo git@bitbucket.org:coworker/coworkers_repo.git
+Here we have created a reference to the coworker's repo using the repo URL. We will now pass that remote name to git fetch to download the contents.
+
+git fetch coworkers_repo coworkers/feature_branch
+fetching coworkers/feature_branch
+We now locally have the contents of coworkers/feature_branch we will need the integrate this into our local working copy. We begin this process by using the git checkout command to checkout the newly downloaded remote branch.
+
+git checkout coworkers/feature_branch
+Note: checking out coworkers/feature_branch'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by performing another checkout.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -b with the checkout command again. Example:
+
+git checkout -b <new-branch-name>
+The output from this checkout operation indicates that we are in a detached HEAD state. This is expected and means that our HEAD ref is pointing to a ref that is not in sequence with our local history. Being that HEAD is pointed at the coworkers/feature_branch ref, we can create a new local branch from that ref. The 'detached HEAD' output shows us how to do this using the git checkout command:
+
+git checkout -b local_feature_branch
+Here we have created a new local branch named local_feature_branch. This puts updates HEAD to point at the latest remote content and we can continue development on it from this point.
+
+Synchronize origin with git fetch
+The following example walks through the typical workflow for synchronizing your local repository with the central repository's master branch.
+
+git fetch origin
+This will display the branches that were downloaded:
+
+a1e8fb5..45e66a4 master -> origin/master
+a1e8fb5..9e8ab1c develop -> origin/develop
+* [new branch] some-feature -> origin/some-feature
+The commits from these new remote branches are shown as squares instead of circles in the diagram below. As you can see, git fetch gives you access to the entire branch structure of another repository.
+
+
+To see what commits have been added to the upstream master, you can run a git log using origin/master as a filter:  
+
+git log --oneline master..origin/master
+To approve the changes and merge them into your local master branch use the following commands:
+
+git checkout master
+git log origin/master
+Then we can use git merge origin/master:
+
+git merge origin/master
+The origin/master and master branches now point to the same commit, and you are synchronized with the upstream developments.
+
+Git fetch summary
+In review, git fetch is a primary command used to download contents from a remote repository. git fetch is used in conjunction with git remote, git branch, git checkout, and git reset to update a local repository to the state of a remote. The git fetch command is a critical piece of collaborative git work flows. git fetch has similar behavior to git pull, however, git fetch can be considered a safer, nondestructive version.
+
+
 	
 Example: 
 	

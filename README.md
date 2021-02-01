@@ -1185,6 +1185,7 @@ You can hit `?` for a full list of hunk commands. Commonly useful ones are:
 |q| quit (any hunks that have already been selected will be stashed) |
 |s| split this hunk into smaller hunks |
 |y| stash this hunk |
+
 There is no explicit "abort" command, but hitting `CTRL`-`C`(SIGINT) will abort the stash process.
 
 # Creating a branch from your stash

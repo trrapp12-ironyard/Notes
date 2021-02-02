@@ -2,7 +2,7 @@
 
 [Node](#node)|[An Accordion in Markdown](#an-accordion-in-markdown)|[Git Commands](#git-commands)|[Coding Project Ideas](#coding-project-ideas)|[Improve Site Speed](#improve-site-speed)|[Arrow Functions](#arrow-functions)|
 |:---:|:---:|:---:|:---:|:---:|:---:|
-|[Future Section 3](#future-section-3)|[Future Section 4](#future-section-4)|[Future Section 5](#future-section-5)|[Future Section 6](#future-section-6)|[Future Section 7](#future-section-7)|[Future Section 8](#future-section-8)|
+|[Rest and Spread Operators](#rest-and-spread-operators)|[Future Section 4](#future-section-4)|[Future Section 5](#future-section-5)|[Future Section 6](#future-section-6)|[Future Section 7](#future-section-7)|[Future Section 8](#future-section-8)|
 
 ----
 
@@ -2173,7 +2173,7 @@ const addOne = a => a + 1;
 
 <br>
 
-# Future Section 3
+# Rest and Spread Operators
 
 ----
 

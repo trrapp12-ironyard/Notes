@@ -2,7 +2,7 @@
 
 [Node](#node)|[An Accordion in Markdown](#an-accordion-in-markdown)|[Git Commands](#git-commands)|[Coding Project Ideas](#coding-project-ideas)|[Improve Site Speed](#improve-site-speed)|[Arrow Functions](#arrow-functions)|
 |:---:|:---:|:---:|:---:|:---:|:---:|
-|[Spread and Rest Operators](#spread-and-rest-operators)|[Future Section 4](#future-section-4)|[Future Section 5](#future-section-5)|[Future Section 6](#future-section-6)|[Future Section 7](#future-section-7)|[Future Section 8](#future-section-8)|
+|[Spread and Rest Operators](#spread-and-rest-operators)|[Lessons Learned](#lessons-learned)|[Future Section 5](#future-section-5)|[Future Section 6](#future-section-6)|[Future Section 7](#future-section-7)|[Future Section 8](#future-section-8)|
 
 ----
 
@@ -2348,7 +2348,14 @@ When using spread syntax for function calls, be aware of the possibility of exce
 
 <br>
 
-# Future Section 4
+# Lessons Learned
+
+1. Alphabetize your CSS
+2. don't redefine h1 element in CSS
+3. uss a CSS linter to catch mistakes
+4. * operators really don't take up that much time
+5. # selectors are there for a reason.  Use them, but know how to use them.  If a class will do, use that instead.
+6. always select with the least priority as possible to avoid conflicts
 
 ----
 
